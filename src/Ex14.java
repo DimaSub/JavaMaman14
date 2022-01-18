@@ -43,18 +43,18 @@ public class Ex14 {
      * @return a Boolean expression, True if the number found in the array or False otherwise.
      */
     public static boolean search(int[][] mat, int num) {
+        int halfLength = mat.length/2;
         if (mat[0][0] > num || mat[mat.length - 1][mat.length - 1] < num) return false;
 
-        if (mat[0][0] <= num && mat[mat.length / 2][0] >= num) {
+        //Number in top half
+        if (mat[0][0] <= num && mat[halfLength][0] >= num) {
             return true;
         }
 
-        if (mat[0][(mat.length / 2) + 1] <= num && mat[mat.length / 2][(mat.length / 2) + 1] >= num) {
+        //Number in bottom half
+        else {
             return true;
         }
-
-
-        return true;
     }
 
     private static void binarySearch(int arr[], int first, int last, int key) {

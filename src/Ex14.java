@@ -47,8 +47,9 @@ public class Ex14 {
         int lowX = 0, highX = mat.length-1, midX = highX/2;
         //values of initial squares corner and middle cells y coordinates
         int lowY = 0, highY = 0, midY = midX+1;
+        int count = mat.length;
 
-        for (int i=0 ; i<10 ; i++) {
+        while (count!=2) {
             if (mat[lowX][lowY] > num || mat[highX][highY] < num) return false;
             //Checks if number is in top part
             if (num >= mat[lowX][lowY] && num <= mat[midX][midY]) {
@@ -59,6 +60,7 @@ public class Ex14 {
                 //Checks if number is in left part
                 if (num >= mat[lowX][lowY] && num <= mat[midX][midY]){
                     highY = lowY;
+                    if (num==mat[lowX][lowY] || num==mat[highX][highY]) return true;
                 }
                 //Case number is in right part
                 else{
@@ -66,6 +68,7 @@ public class Ex14 {
                 }
                 midX = (lowX+highX)/2;
                 midY = lowY+midX+1;
+                count /= 2;
             }
             //Case number is in bottom part
             else{

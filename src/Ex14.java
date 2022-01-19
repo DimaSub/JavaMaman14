@@ -43,18 +43,41 @@ public class Ex14 {
      * @return a Boolean expression, True if the number found in the array or False otherwise.
      */
     public static boolean search(int[][] mat, int num) {
-        int halfLength = mat.length/2;
-        if (mat[0][0] > num || mat[mat.length - 1][mat.length - 1] < num) return false;
+        //values of initial squares corner and middle cells x coordinates
+        int lowX = 0, highX = mat.length-1, midX = highX/2;
+        //values of initial squares corner and middle cells y coordinates
+        int lowY = 0, highY = 0, midY = midX+1;
 
-        //Number in top half
-        if (mat[0][0] <= num && mat[halfLength][0] >= num) {
-            return true;
+        for (int i=0 ; i<10 ; i++) {
+            if (mat[lowX][lowY] > num || mat[highX][highY] < num) return false;
+            //Checks if number is in top part
+            if (num >= mat[lowX][lowY] && num <= mat[midX][midY]) {
+                highX = midX;
+                highY = midY;
+                midX = highX;
+                midY = lowY+midX+1;
+                //Checks if number is in left part
+                if (num >= mat[lowX][lowY] && num <= mat[midX][midY]){
+                    highX = midX;
+                    highY = midY;
+                    midX = (lowX+highX)/2;
+                    midY = lowY+midX+1;
+                }
+                //Case number is in right part
+                else{
+                    lowY = midY;
+                    highX = midX;
+                    highY = midY;
+                    midX = (lowX+highX)/2;
+                    midY = lowY+midX+1;
+                }
+            }
+            //Case number is in bottom part
+            else{
+
+            }
         }
 
-        //Number in bottom half
-        else {
-            return true;
-        }
     }
 
     private static void binarySearch(int arr[], int first, int last, int key) {

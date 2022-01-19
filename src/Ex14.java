@@ -55,46 +55,24 @@ public class Ex14 {
                 highX = midX;
                 highY = midY;
                 midX = highX;
-                midY = lowY+midX+1;
+                midY = lowY;
                 //Checks if number is in left part
                 if (num >= mat[lowX][lowY] && num <= mat[midX][midY]){
                     highX = midX;
-                    highY = midY;
-                    midX = (lowX+highX)/2;
-                    midY = lowY+midX+1;
+                    highY = lowY;
                 }
                 //Case number is in right part
                 else{
-                    lowY = midY;
-                    highX = midX;
-                    highY = midY;
-                    midX = (lowX+highX)/2;
-                    midY = lowY+midX+1;
+                  lowY = highY;
                 }
+                midX = (lowX+highX)/2;
+                midY = lowY+midX+1;
+
             }
             //Case number is in bottom part
             else{
 
             }
-        }
-
-    }
-
-    private static void binarySearch(int arr[], int first, int last, int key) {
-        int mid = (first + last) / 2;
-        while (first <= last) {
-            if (arr[mid] < key) {
-                first = mid + 1;
-            } else if (arr[mid] == key) {
-                System.out.println("Element is found at index: " + mid);
-                break;
-            } else {
-                last = mid - 1;
-            }
-            mid = (first + last) / 2;
-        }
-        if (first > last) {
-            System.out.println("Element is not found!");
         }
     }
 }

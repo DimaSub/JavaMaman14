@@ -61,15 +61,14 @@ public class Ex14 {
                 //Checks if number is in left part
                 if (num >= mat[lowX][lowY] && num <= mat[midX][midY]){
                     highY = lowY;
-                    if (num==mat[lowX][lowY] || num==mat[highX][highY]) return true;
                 }
                 //Case number is in right part
                 else{
                   lowY = highY;
-                  if (num==mat[lowX][lowY] || num==mat[highX][highY]) return true;
                 }
+                if (num==mat[lowX][lowY] || num==mat[highX][highY]) return true;
+                midY = lowY+(highX-lowX+1)/2;
                 midX = (lowX+highX)/2;
-                midY = lowY+midX+1;
                 counter /= 2;
             }
             //Case number is in bottom part

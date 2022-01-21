@@ -60,6 +60,7 @@ public class Ex14 {
                 highX = midX;
                 highY = midY;
                 midY = lowY;
+                if (counter==2 && (num==mat[lowX][lowY] || num==mat[highX][highY])) return true;
                 //Checks if number is in left part
                 if (num >= mat[lowX][lowY] && num <= mat[midX][midY]){
                     highY = lowY;
@@ -71,9 +72,11 @@ public class Ex14 {
             }
             //Case number is in bottom part
             else{
+                lowX = midX+1;
+                lowY = midY;
                 midX = highX;
                 midY = lowY;
-                lowX = midX;
+                if (counter==2 && (num==mat[lowX][lowY] || num==mat[highX][highY])) return true;
                 //Checks if number is in right part
                 if (num >= mat[lowX][lowY] && num <= mat[midX][midY]){
                     highY = midY;

@@ -1,7 +1,7 @@
 /**
  * Maman 14 - Class Ex14
  * @author Dima Subotin - ID: 311626519
- * @version 18/1/22
+ * @version 21/1/22
  */
 
 public class Ex14 {
@@ -35,7 +35,8 @@ public class Ex14 {
     /**
      * A method that receives 2-d sorted circular array and a number.
      * The method then returns True value if the number found in the array or False otherwise.
-     * Time complexity of the method: O(n) - the method goes through the array only once.
+     * Time complexity of the method: O(log n) - The methods cuts in half the search area with every run,
+     * thus reminding the properties of a binary search, which is also got a complexity of O(log n).
      * Space complexity of the method: O(1) - No extra space needed outside of method.
      *
      * @param mat A given 2-d sorted circular array.
@@ -47,6 +48,7 @@ public class Ex14 {
         int lowX = 0, highX = mat.length-1, midX = highX/2;
         //values of initial squares corner and middle cells y coordinates
         int lowY = 0, highY = 0, midY = midX+1;
+        //value of currently inspected squares initial length
         int counter = mat.length;
 
         //Checks if the number is in squares range
@@ -66,13 +68,12 @@ public class Ex14 {
                 else{
                   lowY = highY;
                 }
-
             }
             //Case number is in bottom part
             else{
-                lowX = midX+1;
                 midX = highX;
                 midY = lowY;
+                lowX = midX;
                 //Checks if number is in right part
                 if (num >= mat[lowX][lowY] && num <= mat[midX][midY]){
                     highY = midY;
@@ -91,12 +92,42 @@ public class Ex14 {
     }
 
     /**
+     * sdfsdfsdf
      *
      * @param arr
      * @return
      */
     public static boolean equalSplit (int[] arr){
-        return true;
+        if (arr.length%2!=0 || arr.length<2) return false;
+
+        return sumArray(arr, 0, arr.length/2-1)==sumArray(arr, (arr.length/2), arr.length-1);
+    }
+
+    //Private method to sum array in a given range
+    private static int sumArray(int[] arr, int i, int j)
+    {
+        if (arr.length<=j) return 0;
+        if (i == j) return arr[i];
+        return arr[j] + sumArray(arr ,i , j - 1);
+    }
+
+    /**
+     * A method that receives a number and checks if the number considered a "magic number" by the assignment definitions.
+     *
+     * @param n The number to be checked.
+     * @return Returns the value True if the number is magic or False otherwise.
+     */
+    public static boolean isSpecial (int n){
+        if (n<1) return false;
+        return isSpecial (n, 0, 0)==n;
+    }
+
+    //Private auxiliary method to run numbers from 1 to the given number by using the "magic number" algorithm.
+    private static int isSpecial (int n, int round, int roundNum){
+        round++;
+        if (roundNum==n) return n;
+        if (roundNum>n) return -1;
+        return isSpecial(n, round, (round*round)-round+1);
     }
 }
 

@@ -66,31 +66,26 @@ public class Ex14 {
                 else{
                   lowY = highY;
                 }
-                if (num==mat[lowX][lowY] || num==mat[highX][highY]) return true;
-                midY = lowY+(highX-lowX+1)/2;
-                midX = (lowX+highX)/2;
-                counter /= 2;
+
             }
             //Case number is in bottom part
             else{
-                highY = midY;
                 lowX = midX+1;
                 midX = highX;
-                midY = highY;
+                midY = lowY;
                 //Checks if number is in right part
                 if (num >= mat[lowX][lowY] && num <= mat[midX][midY]){
                     highY = midY;
-                    if (num==mat[lowX][lowY] || num==mat[highX][highY]) return true;
                 }
                 //Case number is in left part
                 else{
                     lowY = highY;
-                    if (num==mat[lowX][lowY] || num==mat[highX][highY]) return true;
                 }
-                midX = (lowX+highX)/2;
-                midY = lowY+counter;
-                counter /= 2;
             }
+            if (num==mat[lowX][lowY] || num==mat[highX][highY]) return true;
+            midY = lowY+(highX-lowX+1)/2;
+            midX = (lowX+highX)/2;
+            counter /= 2;
         }
         return false;
     }

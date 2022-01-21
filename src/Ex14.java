@@ -1,7 +1,7 @@
 /**
  * Maman 14 - Class Ex14
  * @author Dima Subotin - ID: 311626519
- * @version 21/1/22
+ * @version 22/1/22
  */
 
 public class Ex14 {
@@ -35,8 +35,8 @@ public class Ex14 {
     /**
      * A method that receives 2-d sorted circular array and a number.
      * The method then returns True value if the number found in the array or False otherwise.
-     * Time complexity of the method: O(log n) - The methods cuts in half the search area with every run,
-     * thus reminding the properties of a binary search, which is also got a complexity of O(log n).
+     * Time complexity of the method: O(log n) - The methods cuts in half the search area with every step,
+     * thus reminding the properties of a binary search, which also got the complexity of O(log n).
      * Space complexity of the method: O(1) - No extra space needed outside of method.
      *
      * @param mat A given 2-d sorted circular array.
@@ -92,10 +92,11 @@ public class Ex14 {
     }
 
     /**
-     * sdfsdfsdf
+     * A method that receives an array and checks if it can be divided into 2 equal groups.
+     * Groups should be equal in their sums and their number of cells.
      *
-     * @param arr
-     * @return
+     * @param arr The array to check.
+     * @return Returns True if equal split is possible or False otherwise.
      */
     public static boolean equalSplit (int[] arr){
         if (arr.length%2!=0 || arr.length<2) return false;
@@ -122,7 +123,7 @@ public class Ex14 {
         return isSpecial (n, 0, 0)==n;
     }
 
-    //Private auxiliary method to run numbers from 1 to the given number by using the "magic number" algorithm.
+    //Private auxiliary method to run numbers from 1 to the input number by using the "magic number" algorithm.
     private static int isSpecial (int n, int round, int roundNum){
         round++;
         if (roundNum==n) return n;

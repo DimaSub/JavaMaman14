@@ -101,18 +101,26 @@ public class Ex14 {
      * @param arr The array to check.
      * @return Returns True if equal split is possible or False otherwise.
      */
-    public static boolean equalSplit (int[] arr){
-        if (arr.length%2!=0 || arr.length<2) return false;
-
-        return sumArray(arr, 0, arr.length/2-1)==sumArray(arr, (arr.length/2), arr.length-1);
+    public static boolean equalSplit(int arr[]){
+        if (arr.length<1) return false;
+        if (arr.length%2!=0) return false;
+        int sum = sumArray(arr, arr.length-1);
+        if (sum % 2 != 0) return false;
+        return isSubsetSum(arr, arr.length, sum / 2);
     }
 
-    //Private method to sum array in a given range
-    private static int sumArray(int[] arr, int i, int j)
-    {
-        if (arr.length<=j) return 0;
-        if (i == j) return arr[i];
-        return arr[j] + sumArray(arr ,i , j - 1);
+    //Private auxiliary method that checks if
+    private static boolean isSubsetSum(int arr[], int n, int sum){
+        if (sum == 0) return true;
+        if (n == 0 && sum != 0) return false;
+        if (arr[n - 1] > sum) return isSubsetSum(arr, n - 1, sum);
+        return isSubsetSum(arr, n - 1, sum) || isSubsetSum(arr, n - 1, sum - arr[n - 1]);
+    }
+
+    //Private auxiliary method to sum array
+    private static int sumArray(int[] arr, int n) {
+        if (n == 0) return arr[n];
+        else return sumArray(arr, n-1)+arr[n];
     }
 
     /**

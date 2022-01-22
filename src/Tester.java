@@ -25,7 +25,7 @@ public class Tester {
 //        System.out.println(Ex14.search(test2, 6));
 //        System.out.println(Ex14.search(array2, 11));
 
-        int[] testArray = new int[] {1,1,1,1,1,1,1,1};
+        int[] testArray = new int[] {-1,-1};
 
         System.out.println(Ex14.equalSplit(testArray));
 //        System.out.println(Ex14.isSpecial(21));

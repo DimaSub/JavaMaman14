@@ -105,21 +105,21 @@ public class Ex14 {
         if (arr.length<1) return false;
         if (arr.length%2!=0) return false;
         int sum = sumArray(arr, arr.length-1);
-        if (sum % 2 != 0) return false;
-        return isSubsetSum(arr, arr.length, sum / 2);
+        if (sum%2!=0) return false;
+        return isValid(arr, arr.length, sum/2);
     }
 
-    //Private auxiliary method that checks if
-    private static boolean isSubsetSum(int arr[], int n, int sum){
-        if (sum == 0) return true;
-        if (n == 0 && sum != 0) return false;
-        if (arr[n - 1] > sum) return isSubsetSum(arr, n - 1, sum);
-        return isSubsetSum(arr, n - 1, sum) || isSubsetSum(arr, n - 1, sum - arr[n - 1]);
+    //Private auxiliary method that checks if it is possible to create 2 groups with equal sum.
+    private static boolean isValid(int arr[], int n, int sum){
+        if (sum==0) return true;
+        if (n==0 && sum!=0) return false;
+        if (arr[n-1] > sum) return isValid(arr, n-1, sum);
+        return isValid(arr, n-1, sum) || isValid(arr, n-1, sum - arr[n-1]);
     }
 
     //Private auxiliary method to sum array
     private static int sumArray(int[] arr, int n) {
-        if (n == 0) return arr[n];
+        if (n==0) return arr[n];
         else return sumArray(arr, n-1)+arr[n];
     }
 

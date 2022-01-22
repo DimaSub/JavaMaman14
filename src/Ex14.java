@@ -101,7 +101,7 @@ public class Ex14 {
      * @param arr The array to check.
      * @return Returns True if equal split is possible or False otherwise.
      */
-    public static boolean equalSplit(int arr[]){
+    public static boolean equalSplit(int[] arr){
         if (arr.length<1) return false;
         if (arr.length%2!=0) return false;
         int sum = sumArray(arr, arr.length-1);
@@ -110,10 +110,9 @@ public class Ex14 {
     }
 
     //Private auxiliary method that checks if it is possible to create 2 groups with equal sum.
-    private static boolean isValid(int arr[], int n, int sum){
+    private static boolean isValid(int[] arr, int n, int sum){
         if (sum==0) return true;
-        if (n==0 && sum!=0) return false;
-        if (arr[n-1] > sum) return isValid(arr, n-1, sum);
+        if (n==0) return false;
         return isValid(arr, n-1, sum) || isValid(arr, n-1, sum - arr[n-1]);
     }
 
